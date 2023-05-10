@@ -3,3 +3,5 @@ steps:
   args: ['build', '-t', 'gcr.io/cloud-run-011/cloudrun2:$COMMIT_SHA', '.']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/cloud-run-011/cloudrun2:$COMMIT_SHA']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['beta', 'run', 'deploy', 'cloudrun2', '--region=us-central1', '--platform=managed', '--image=gcr.io/cloud-run-011/cloudrun2:6072d50b9e01560664a5b2d458124947865c2a5e']
